@@ -40,6 +40,9 @@ class LoginScreenState extends State<LoginScreen> {
           return 'Plase enter a valid email';
         }
       },
+      onSaved: (String value) {
+        print(value);
+      },
     );
   }
 
@@ -55,6 +58,9 @@ class LoginScreenState extends State<LoginScreen> {
           return 'Password must be at least 4 characters';
         }
       },
+      onSaved: (String value) {
+        print(value);
+      },
     );
   }
 
@@ -67,8 +73,12 @@ class LoginScreenState extends State<LoginScreen> {
         // to validate fields in form
         // Each field must have a validator function assigned to it
         // that returns either null if valid or a string with error message
-        // that will be displayed beneath each field
-        formKey.currentState.validate();
+        // if not valid, the error message is displayed beneath the field
+        if (formKey.currentState.validate()) {
+          // call save method if form is valid
+          // calling save will run the onSave function for each form field
+          formKey.currentState.save();
+        }
       },
     );
   }
