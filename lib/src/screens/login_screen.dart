@@ -53,7 +53,8 @@ class LoginScreenState extends State<LoginScreen> {
       color: Colors.blue,
       child: Text('Submit'),
       onPressed: () {
-        print('Submit pressed!');
+        //get current state reference from formKey and call method on FormState
+        formKey.currentState.reset();
       },
     );
   }
