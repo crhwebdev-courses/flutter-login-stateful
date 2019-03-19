@@ -14,7 +14,7 @@ class LoginScreenState extends State<LoginScreen> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: Form(
-        // associate formKey with FormState
+        // associate formKey with FormState of Form
         key: formKey,
         child: Column(
           children: [
@@ -35,6 +35,11 @@ class LoginScreenState extends State<LoginScreen> {
         labelText: 'Email Address',
         hintText: 'you@example.com',
       ),
+      validator: (String value) {
+        if (!value.contains('@')) {
+          return 'Plase enter a valid email';
+        }
+      },
     );
   }
 
@@ -45,6 +50,11 @@ class LoginScreenState extends State<LoginScreen> {
         labelText: 'Password',
         hintText: 'Password',
       ),
+      validator: (String value) {
+        if (value.length < 4) {
+          return 'Password must be at least 4 characters';
+        }
+      },
     );
   }
 
@@ -54,7 +64,11 @@ class LoginScreenState extends State<LoginScreen> {
       child: Text('Submit'),
       onPressed: () {
         //get current state reference from formKey and call method on FormState
-        formKey.currentState.reset();
+        // to validate fields in form
+        // Each field must have a validator function assigned to it
+        // that returns either null if valid or a string with error message
+        // that will be displayed beneath each field
+        formKey.currentState.validate();
       },
     );
   }
