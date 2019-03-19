@@ -14,6 +14,7 @@ class LoginScreenState extends State<LoginScreen> {
     return Container(
       margin: EdgeInsets.all(20.0),
       child: Form(
+        // associate formKey with FormState
         key: formKey,
         child: Column(
           children: [
